@@ -1,0 +1,22 @@
+name: test for docker-bake.json
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - bakefiles/*.json
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  make_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Run make test
+        run: make test
