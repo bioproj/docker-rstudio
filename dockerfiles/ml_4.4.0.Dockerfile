@@ -1,4 +1,4 @@
-FROM rocker/r-ver:devel
+FROM rocker/cuda:4.4.0
 
 LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
       org.opencontainers.image.source="https://github.com/rocker-org/rocker-versioned2" \
@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
       org.opencontainers.image.authors="Carl Boettiger <cboettig@ropensci.org>"
 
 ENV S6_VERSION=v2.1.0.2
-ENV RSTUDIO_VERSION=2024.09.0+375
+ENV RSTUDIO_VERSION=2024.04.2+764
 ENV DEFAULT_USER=rstudio
 ENV PANDOC_VERSION=default
 ENV QUARTO_VERSION=default
@@ -14,6 +14,7 @@ ENV QUARTO_VERSION=default
 RUN /rocker_scripts/install_rstudio.sh
 RUN /rocker_scripts/install_pandoc.sh
 RUN /rocker_scripts/install_quarto.sh
+RUN /rocker_scripts/install_tidyverse.sh
 
 EXPOSE 8787
 
